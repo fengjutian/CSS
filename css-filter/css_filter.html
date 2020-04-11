@@ -21,7 +21,6 @@
             width: 300px;
             height: 300px;
         }
-
     </style>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
@@ -47,8 +46,8 @@
         </div>
         <div class='img-box'>
             <div>contrast[对比度]{{contrastVal}}%</div>
-            <input type="range" v-model='contrastVal' @change='changeContrastVal'  min="0" max="1000">
-            <span>[0% ~ 1000%]</span><br/>
+            <input type="range" v-model='contrastVal' @change='changeContrastVal'  min="0" max="100">
+            <span>[0% ~ 100%]</span><br/>
             <img src='./gaolu.jpg' class='base-img'  :style='{filter: "contrast(" + contrastVal  + "%)"}'/>
         </div>
         <div class='img-box'>
@@ -68,6 +67,39 @@
             <input type="range" v-model='opacityVal' @change='changeOpacityVal'  min="0" max='100'>
             <span>[0% ~ 100%]</span><br/>
             <img src='./gaolu.jpg' class='base-img'  :style='{filter: "opacity(" + opacityVal + "%)"}'/>
+        </div>
+        <div class='img-box'>
+            <div>saturate[饱和度]{{saturateVal}}%</div>
+            <input type="range" v-model='saturateVal' @change='changeSaturateVal'  min="0" max='100'>
+            <span>[0% ~ 100%]</span><br/>
+            <img src='./gaolu.jpg' class='base-img'  :style='{filter: "saturate(" + saturateVal + "%)"}'/>
+        </div>
+        <div class='img-box'>
+            <div>brightness[亮度]{{brightnessVal}}%</div>
+            <input type="range" v-model='brightnessVal' @change='changeBrightnessVal'  min="0" max='100'>
+            <span>[0% ~ 100%]</span><br/>
+            <img src='./gaolu.jpg' class='base-img'  :style='{filter: "brightness(" + brightnessVal + "%)"}'/>
+        </div>
+        <div class='img-box'>
+            <div>sepia[深褐色]{{sepiaVal}}%</div>
+            <input type="range" v-model='sepiaVal' @change='changeSepiaVal'  min="0" max='100'>
+            <span>[0% ~ 100%]</span><br/>
+            <img src='./gaolu.jpg' class='base-img'  :style='{filter: "sepia(" + sepiaVal + "%)"}'/>
+        </div>
+        <div class='img-box'>
+            <div>drop-shadow[阴影]</div>
+            <span>offset-x:</span>
+            <input type="range" v-model='offsetX' @change='changeDropShadowX'  min="0" max='100'><br/>
+            <span>offset-y:</span>
+            <input type="range" v-model='offsetY' @change='changeDropShadowY'  min="0" max='100'><br/>
+            <span>blur-radius:</span>
+            <input type="range" v-model='dropShadowObj' @change='changeDropShadowVal'  min="0" max='100'><br/>
+            <span>spread-radius:</span>
+            <input type="range" v-model='dropShadowObj' @change='changeDropShadowVal'  min="0" max='100'><br/>
+            <span>color:</span>
+            <input type="color" value="#ff0000" /><br/>
+            <img src='./gaolu.jpg' class='base-img' 
+             :style='{filter: "drop-shadow(" + offsetX + "px" + offsetY + "px" + ")"}'/>
         </div>
 
         
@@ -90,7 +122,16 @@
                 contrastVal: 50,
                 hueRotateVal: 30,
                 invertVal: 10,
-                opacityVal: 30
+                opacityVal: 30,
+                saturateVal: 10,
+                brightnessVal: 30,
+                sepiaVal: 30,
+                dropShadowObj: {
+                    offsetX: 10,
+                    offsetY: 10
+                },
+                offsetX: 10,
+                offsetY: 10
             },
             methods: {
                 changeBlurVal(e) {
@@ -111,6 +152,24 @@
                 },
                 changeOpacityVal() {
                    this.opacityVal = this.opacityVal
+                },
+                changeSaturateVal() {
+                    this.saturateVal = this.saturateVal
+                },
+                changeBrightnessVal() {
+                    this.brightnessVal = this.brightnessVal
+                },
+                changeSepiaVal() {
+                    this.sepiaVal = this.sepiaVal
+                },
+                changeDropShadowX() {
+                    this.offsetX = this.offsetX
+                },
+                changeDropShadowY() {
+                    this.offsetY = this.offsetY
+                },
+                changeDropShadowVal() {
+
                 }
             }
         })
