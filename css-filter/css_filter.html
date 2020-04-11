@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css-filter</title>
+    <style>
+        html, body{
+            margin: 0;
+        }
+        #app{
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .img-box{
+            padding: 10px;
+        }
+
+        .base-img{
+            width: 300px;
+            height: 300px;
+        }
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id='app'>
+        <div class='img-box'>
+            <div>原图</div>
+            <img src='./gaolu.jpg' class='base-img'/>
+        </div>
+        <div class='img-box'>
+            <div>blur[高斯模糊]{{blurVal}}px</div>
+            <input v-model='blurVal' @change='changeBlurVal'/>
+            <span>px</span><br/>
+            <img src='./gaolu.jpg' class='base-img'  :style='{filter: "blur(" + blurVal + "px)"}'/>
+        </div>
+        <div class='img-box'>
+            <div>grayscale[灰度][default: 0]{{grayscaleVal}}%</div>
+            <input type="range" v-model='grayscaleVal'  @change='changeGrayScaleVal' name="volume" min="0" max="100">
+            <span>[0% ~ 100%]</span>
+            <br/>
+            <img src='./gaolu.jpg' class='base-img' 
+            :style='{filter: "grayscale(" + grayscaleVal + "%)", "-webkit-filter": "grayscale(" + grayscaleVal + "%)"}'/>
+        </div>
+        <div class='img-box'>
+            <div>contrast[对比度]{{contrastVal}}%</div>
+            <input type="range" v-model='contrastVal' @change='changeContrastVal'  min="0" max="1000">
+            <span>[0% ~ 1000%]</span><br/>
+            <img src='./gaolu.jpg' class='base-img'  :style='{filter: "contrast(" + contrastVal  + "%)"}'/>
+        </div>
+        <div class='img-box'>
+            <div>hue-rotate[色相旋转]{{hueRotateVal}}deg</div>
+            <input type="range" v-model='hueRotateVal' @change='changeHueRotateVal'  min="0" max='360'>
+            <span>[0deg ~ 360deg]</span><br/>
+            <img src='./gaolu.jpg' class='base-img'  :style='{filter: "hue-rotate(" + hueRotateVal + "deg)"}'/>
+        </div>
+        <div class='img-box'>
+            <div>invert[反转]{{invertVal}}%</div>
+            <input type="range" v-model='invertVal' @change='changeInvertVal'  min="0" max='100'>
+            <span>[0% ~ 100%]</span><br/>
+            <img src='./gaolu.jpg' class='base-img'  :style='{filter: "invert(" + invertVal + "%)"}'/>
+        </div>
+
+        
+
+        
+
+    </div>
+    <div>
+        <p>参考资料：</p>
+        <p><a href='https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter' target='_blank'>MDN filter</a></p>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                blurVal: 0,
+                grayscaleVal: 0,
+                contrastVal: 50,
+                hueRotateVal: 30,
+                invertVal: 10
+            },
+            methods: {
+                changeBlurVal(e) {
+                    this.blurVal = this.blurVal
+                },
+                changeGrayScaleVal(e) {
+                    this.grayscaleVal = this.grayscaleVal
+                    console.log(`filter: grayscale(${e.target.value} + %)`)
+                },
+                changeContrastVal() {
+                    this.contrastVal = this.contrastVal
+                },
+                changeHueRotateVal() {
+                    this.hueRotateVal = this.hueRotateVal
+                },
+                changeInvertVal() {
+                    this.invertVal = this.invertVal
+                }
+            }
+        })
+
+    </script>
+    
+</body>
+</html>
