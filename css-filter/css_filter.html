@@ -63,6 +63,12 @@
             <span>[0% ~ 100%]</span><br/>
             <img src='./gaolu.jpg' class='base-img'  :style='{filter: "invert(" + invertVal + "%)"}'/>
         </div>
+        <div class='img-box'>
+            <div>opacity[透明度]{{opacityVal}}%</div>
+            <input type="range" v-model='opacityVal' @change='changeOpacityVal'  min="0" max='100'>
+            <span>[0% ~ 100%]</span><br/>
+            <img src='./gaolu.jpg' class='base-img'  :style='{filter: "opacity(" + opacityVal + "%)"}'/>
+        </div>
 
         
 
@@ -83,7 +89,8 @@
                 grayscaleVal: 0,
                 contrastVal: 50,
                 hueRotateVal: 30,
-                invertVal: 10
+                invertVal: 10,
+                opacityVal: 30
             },
             methods: {
                 changeBlurVal(e) {
@@ -101,6 +108,9 @@
                 },
                 changeInvertVal() {
                     this.invertVal = this.invertVal
+                },
+                changeOpacityVal() {
+                   this.opacityVal = this.opacityVal
                 }
             }
         })
