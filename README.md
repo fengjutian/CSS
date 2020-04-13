@@ -2,5 +2,5 @@
 
 ## filter
 
-[filter]('./filter/filter.html)
+[filter](filter/filter.html)
 
