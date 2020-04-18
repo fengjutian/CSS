@@ -14,6 +14,8 @@
 
 ## CSS 函数
 ### attr()
+### cubic-bezier()
+[CSS 函数](cssFun/cssFun.html)
 
 ## 听觉样式表
 
